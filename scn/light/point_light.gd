@@ -1,0 +1,2 @@
+extends PointLight2D
+

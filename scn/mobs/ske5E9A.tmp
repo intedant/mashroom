@@ -1,0 +1,135 @@
+[gd_scene load_steps=20 format=3 uid="uid://cvuy525pwgu7l"]
+
+[ext_resource type="Script" path="res://mobs/skeleton.gd" id="1_hxb2o"]
+[ext_resource type="Texture2D" uid="uid://chsi6v4jwht37" path="res://oak_woods_v1.0/Monster_Creatures_Fantasy(Version 1.3)/Skeleton/Death.png" id="2_bqhyx"]
+[ext_resource type="Texture2D" uid="uid://kwdlttsek514" path="res://oak_woods_v1.0/Monster_Creatures_Fantasy(Version 1.3)/Skeleton/Idle.png" id="3_0e1yl"]
+[ext_resource type="Texture2D" uid="uid://crve6sn8jhqn2" path="res://oak_woods_v1.0/Monster_Creatures_Fantasy(Version 1.3)/Skeleton/Walk.png" id="4_f4s5q"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_03f27"]
+radius = 43.0
+height = 120.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o73ri"]
+atlas = ExtResource("2_bqhyx")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqusf"]
+atlas = ExtResource("2_bqhyx")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnet7"]
+atlas = ExtResource("2_bqhyx")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3cck"]
+atlas = ExtResource("2_bqhyx")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfudm"]
+atlas = ExtResource("3_0e1yl")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb0rm"]
+atlas = ExtResource("3_0e1yl")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udl5x"]
+atlas = ExtResource("3_0e1yl")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucnig"]
+atlas = ExtResource("3_0e1yl")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65ck0"]
+atlas = ExtResource("4_f4s5q")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h5v5"]
+atlas = ExtResource("4_f4s5q")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rjto"]
+atlas = ExtResource("4_f4s5q")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p8y2"]
+atlas = ExtResource("4_f4s5q")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qoefa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o73ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqusf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnet7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3cck")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfudm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb0rm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udl5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucnig")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65ck0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h5v5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rjto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4p8y2")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_203cb"]
+
+[node name="skeleton" type="CharacterBody2D"]
+script = ExtResource("1_hxb2o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_03f27")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-15, 6.00002)
+scale = Vector2(2.9, 2.9)
+sprite_frames = SubResource("SpriteFrames_qoefa")
+animation = &"run"
+autoplay = "idle"
+
+[node name="detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+scale = Vector2(39.7503, 39.7503)
+shape = SubResource("CircleShape2D_203cb")
+
+[connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]

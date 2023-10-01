@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://6dv8et8mjtfc"]
+
+[ext_resource type="Texture2D" uid="uid://cha46b2dtugcg" path="res://assets/decorations/shop_anim.png" id="1_vhpgd"]
+[ext_resource type="PackedScene" uid="uid://co0jt8yghqnm3" path="res://scn/light/point_light.tscn" id="3_42wl6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikxvf"]
+size = Vector2(9.06848, 7.7665)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upce6"]
+atlas = ExtResource("1_vhpgd")
+region = Rect2(0, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awtdd"]
+atlas = ExtResource("1_vhpgd")
+region = Rect2(118, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hf4l"]
+atlas = ExtResource("1_vhpgd")
+region = Rect2(236, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwvts"]
+atlas = ExtResource("1_vhpgd")
+region = Rect2(354, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fnxe"]
+atlas = ExtResource("1_vhpgd")
+region = Rect2(472, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tuiq"]
+atlas = ExtResource("1_vhpgd")
+region = Rect2(590, 0, 118, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v4e3v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upce6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awtdd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hf4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwvts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fnxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tuiq")
+}],
+"loop": true,
+"name": &"shop_idle",
+"speed": 10.0
+}]
+
+[node name="Shop" type="Area2D"]
+scale = Vector2(2.03478, 2.03478)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.491451, 26.8568)
+scale = Vector2(10.08, 10.08)
+shape = SubResource("RectangleShape2D_ikxvf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v4e3v")
+animation = &"shop_idle"
+autoplay = "shop_idle"
+frame_progress = 0.536258
+
+[node name="PointLight2D" parent="." instance=ExtResource("3_42wl6")]
+position = Vector2(49.6368, 35.8761)
+scale = Vector2(0.0392051, 0.0392051)
+
+[node name="PointLight2D2" parent="." instance=ExtResource("3_42wl6")]
+position = Vector2(-48.1625, 35.8761)
+scale = Vector2(0.0392051, 0.0392051)
